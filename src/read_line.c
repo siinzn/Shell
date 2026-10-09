@@ -1,4 +1,3 @@
-#define LSH_RL_BUFSIZE 1024
 #include "../include/header.h"
 
 char *read_line(void) 
