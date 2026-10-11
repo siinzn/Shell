@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
+#include <sys/wait.h>
 
 #define LSH_RL_BUFSIZE 1024
 #define LSH_SL_BUFSIZE 64
@@ -15,8 +16,9 @@
 
 char *read_line(void);
 char **split_line(char *line);
-int **execute_args(char **args);
+int execute_args(char **args);
 int new_process(char **args);
+void lsh_loop(void);
 
 /*---Builtin func---*/
 int own_cd(char **args);

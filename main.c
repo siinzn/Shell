@@ -1,18 +1,24 @@
 #include "include/header.h"
 
-int main(void) {
-    char *line = read_line();
-    char **parsed_line = split_line(line);
+void lsh_loop(void)
+{
+  char *line;
+  char **args;
+  int status;
 
-    if(line != NULL) printf("%s\n", line);
-    for(size_t i = 0; i < sizeof(parsed_line); i++) {
-        if(parsed_line[i] != NULL) {
-            printf("%s\n", parsed_line[i]);
-        } else {
-            exit(EXIT_FAILURE);
-        }
-    }
+  do {
+    printf("> ");
+    line = read_line();
+    args = split_line(line);
+    status = execute_args(args);
+
     free(line);
-    free(parsed_line);
-    return 0;
+    free(args);
+  } while (status);
+}
+
+int main(void) 
+{
+	lsh_loop();
+    return EXIT_SUCCESS;
 }

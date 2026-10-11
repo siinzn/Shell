@@ -1,6 +1,6 @@
 #include "include/header.h"
 
-int **execute_args(char **args) {
+int execute_args(char **args) {
 
     char *bultin_func_list[] = {
         "cd",
@@ -18,8 +18,9 @@ int **execute_args(char **args) {
 
     if(args[0] == NULL) return (-1);
 
-    for(int i=0; i < sizeof(bultin_func_list) / sizeof(char *); i++) {
-        if(strcmp(args[0], bultin_func_list[i] == 0)) return ((*bultin_func[i])(args));
+    for(size_t i=0; i < sizeof(bultin_func_list) / sizeof(char *); i++) {
+        if(strcmp(args[0], bultin_func_list[i]) == 0) return ((*bultin_func[i])(args));
     }
     return (new_process(args));
+}
 
